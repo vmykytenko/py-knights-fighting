@@ -5,29 +5,23 @@ from app.engine import fight
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
-    # Create knight objects (they calculate everything automatically now!)
-    # lancelot
-    lancelot = Knight(knights_config["lancelot"])
-    # arthur
+    """
+    Run the full battle simulation based on the provided configuration.
+
+    Prepares knight objects, executes scheduled duels
+    and returns the final HP status for all participants.
+    """
     arthur = Knight(knights_config["arthur"])
-    # mordred
+    lancelot = Knight(knights_config["lancelot"])
     mordred = Knight(knights_config["mordred"])
-    # red_knight
     red_knight = Knight(knights_config["red_knight"])
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    fight(lancelot, mordred)
-    fight(mordred, lancelot)
-
-    # 2 Arthur vs Red Knight:
     fight(arthur, red_knight)
     fight(red_knight, arthur)
 
-    # Return battle results:
+    fight(lancelot, mordred)
+    fight(mordred, lancelot)
+
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
@@ -36,4 +30,5 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))

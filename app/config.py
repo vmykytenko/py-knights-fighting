@@ -1,15 +1,4 @@
 KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
     "arthur": {
         "name": "Arthur",
         "power": 45,
@@ -31,6 +20,17 @@ KNIGHTS = {
         "weapon": {
             "name": "Two-handed Sword",
             "power": 55,
+        },
+        "potion": None,
+    },
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
         },
         "potion": None,
     },

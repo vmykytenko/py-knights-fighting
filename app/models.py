@@ -1,20 +1,28 @@
 class Knight:
+    """
+    Represents a medieval knight with combat statistics.
 
+    Calculate effective health, power and protection by
+    considering base stats, equiped gear and consumed potions.
+    """
     def __init__(self, knight_data: dict) -> None:
+        """
+        Initialize a Knight instance from a data dictionary.
 
+        Args:
+            knight_data: A dictionary containing knight's name,
+                         hp, power, armour, weapon and potion.
+        """
         self.name = knight_data["name"]
         self.hp = knight_data["hp"]
         self.power = knight_data["power"]
         self.protection = 0
 
-        # 1. Calculate protection from all armour pieces
         for item in knight_data["armour"]:
             self.protection += item["protection"]
 
-        # 2. Add weapon power to base power
         self.power += knight_data["weapon"]["power"]
 
-        # 3. Apply potion effects if present
         potion = knight_data["potion"]
         if potion:
             effect = potion.get("effect", {})

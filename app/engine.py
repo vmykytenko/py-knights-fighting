@@ -3,12 +3,16 @@ from app.models import Knight
 
 
 def fight(attacker: Knight, defender: Knight) -> None:
+    """
+    Execute a combat turn between two knights.
 
-    # Calculate damage: attacker's total power -- defender's total protection
+    Calculating damage based on attacker's power and defender's protection,
+    updating the defender's HP and ensuring it doesn't drop below zero.
+    """
     damage = attacker.power - defender.protection
-    # If damage is positive, subtract it from the defender's health points
+
     if damage > 0:
         defender.hp -= damage
-    # Ensure health points do not become negative
+
     if defender.hp < 0:
         defender.hp = 0

@@ -1,5 +1,6 @@
 # Starting project with messy code
 from app.config import KNIGHTS
+from app.engine import fight
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
@@ -96,26 +97,12 @@ def battle(knightsConfig):
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
+    fight(lancelot, mordred)
+    fight(mordred, lancelot)
 
     # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
+    fight(arthur, red_knight)
+    fight(red_knight, arthur)
 
     # Return battle results:
     return {

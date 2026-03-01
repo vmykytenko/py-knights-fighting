@@ -1,3 +1,6 @@
+# Starting project with messy code
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",

@@ -1,4 +1,3 @@
-# Starting project with messy code
 from app.config import KNIGHTS
 from app.models import Knight
 from app.engine import fight
@@ -11,23 +10,18 @@ def battle(knights_config: dict) -> dict:
     Prepares knight objects, executes scheduled duels
     and returns the final HP status for all participants.
     """
-    arthur = Knight(knights_config["arthur"])
-    lancelot = Knight(knights_config["lancelot"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
-
-    fight(arthur, red_knight)
-    fight(red_knight, arthur)
-
-    fight(lancelot, mordred)
-    fight(mordred, lancelot)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+    knights = {
+        knight: Knight(knights_config[knight])
+        for knight in knights_config.keys()
     }
+
+    duels = [("arthur", "red_knight"), ("lancelot", "mordred")]
+
+    for duel in duels:
+        fight(knights[duel[0]], knights[duel[1]])
+        fight(knights[duel[1]], knights[duel[0]])
+
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
